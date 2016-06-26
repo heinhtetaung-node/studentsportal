@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//user login ,logout,students register,
 
 Route::group(['prefix'=>'backend'], function () {
 	Route::get('/', ['as' => 'backend', function () {
@@ -25,5 +26,7 @@ Route::group(['prefix'=>'backend'], function () {
 	Route::get('/oneone', ['as' => 'backend.oneone', function () {
 		return view('backend.oneone');
 	}]);
+
+	Route::resource("student","Backend\StudentsController");
 
 });
