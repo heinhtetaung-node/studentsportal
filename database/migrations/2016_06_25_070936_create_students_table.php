@@ -20,6 +20,8 @@ class CreateStudentsTable extends Migration
             $table->string('phone');
             $table->string('facebook_link');
             $table->boolean('activate_flag');
+            $table->string('photo',100);
+            $table->string('varification_code');
             $table->boolean('delete_flag');
             $table->integer('role_id');
             $table->timestamps();

@@ -14,11 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//
-Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::group(['middleware'=>'auth','prefix'=>'admin'],function(){
-	Route::get('hello',function(){
-		return "helloworld";
-	});
+
+Route::group(['prefix'=>'backend'], function () {
+	Route::get('/', ['as' => 'backend', function () {
+		return view('backend.home');
+	}]);
+
+	// Testing ... Don't delete now!
+	Route::get('/oneone', ['as' => 'backend.oneone', function () {
+		return view('backend.oneone');
+	}]);
+
 });
