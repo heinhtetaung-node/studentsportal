@@ -17,6 +17,7 @@ class CreateProjectGroupsTable extends Migration
             $table->integer('batch_id');
             $table->string('project_name',65);
             $table->text('description');
+            
             $table->timestamps();
         });
     }
