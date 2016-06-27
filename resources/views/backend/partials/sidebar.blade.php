@@ -32,15 +32,14 @@
                 </a>
             </li>
 
-            {{--Testing...--}}
-            <li @if (Request::is('backend/*')) class="active" @endif class="treeview">
+            <li @if (Request::is('backend/student*')) class="active" @endif class="treeview">
                 <a href="#">
-                    <i class="fa fa-share"></i> <span>Multilevel</span>
+                    <i class="fa fa-users"></i> <span>Students</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li @if (Request::is('backend/oneone')) class="active" @endif><a href="{{ url('backend/oneone') }}"><i class="fa fa-circle-o"></i> Level OneOne</a></li>
-                    <li><a href=""><i class="fa fa-circle-o"></i> Level OneTwo</a></li>
+                    <li @if (Request::is('backend/student')) class="active" @endif><a href="{{ url('backend/student') }}"><i class="fa fa-circle-o"></i> All Students</a></li>
+                    <li @if (Request::is('backend/student/create')) class="active" @endif><a href="{{ url('backend/student/create') }}"><i class="fa fa-circle-o"></i> Create Student</a></li>
                 </ul>
             </li>
         </ul>

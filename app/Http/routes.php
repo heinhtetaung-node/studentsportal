@@ -18,15 +18,8 @@ Route::get('/', function () {
 //user login ,logout,students register,
 
 Route::group(['prefix'=>'backend'], function () {
-	Route::get('/', ['as' => 'backend', function () {
-		return view('backend.home');
-	}]);
+	Route::get('/', ['as' => 'backend', 'uses' => 'Backend\BackendController@index']);
 
-	// Testing ... Don't delete now!
-	Route::get('/oneone', ['as' => 'backend.oneone', function () {
-		return view('backend.oneone');
-	}]);
-
-	Route::resource("student","Backend\StudentsController");
+	Route::resource('student', 'Backend\StudentsController');
 
 });

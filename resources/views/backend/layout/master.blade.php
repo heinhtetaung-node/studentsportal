@@ -36,7 +36,9 @@
                 </h4>
             </section>
 
-            @yield('content')
+            <section class="content">
+                @yield('content')
+            </section>
 
         </div>
         <!-- /.content-wrapper -->
