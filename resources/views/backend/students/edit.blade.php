@@ -3,7 +3,7 @@
 @section('content')
     <div class="box box-danger">
         <div class="box-header with-border">
-            <h3 class="box-title">Edit a Student</h3>
+            <h3 class="box-title">Edit A Student</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
         <form role="form" action="{{ url('backend/student/' . $student->id) }}" method="POST">
@@ -14,11 +14,11 @@
                     <div class="form-group has-feedback has-error">
                         <label class="control-label" for="name"><i class="fa fa-times-circle-o"></i> {{ $errors->first('name') }}</label>
                         @else
-                        <div class="form-group">
-                            <label for="name">UserName</label>
+                    <div class="form-group">
+                        <label for="name">UserName</label>
                         @endif
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your UserName" value="{{ $student->name }}">
-                        </div>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your UserName" value="{{ $student->name }}">
+                    </div>
 
                 @if($errors->has('email'))
                      <div class="form-group has-feedback has-error">
