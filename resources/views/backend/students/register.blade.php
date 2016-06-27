@@ -63,6 +63,7 @@
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Create</button>
+                        <a href="{{ route('backend.student.index') }}" class="btn btn-default">Cancel</a>
                     </div>
             </div>
         </form>
