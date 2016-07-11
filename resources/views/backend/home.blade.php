@@ -167,7 +167,7 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                                 <input type="checkbox" value="">
-                                <span class="text">Let theme shine like a star</span>
+                                <span class="text">Let theme shine like a start</span>
                                 <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
                                 <div class="tools">
                                     <i class="fa fa-edit"></i>
