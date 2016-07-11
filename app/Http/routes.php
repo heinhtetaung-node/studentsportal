@@ -11,15 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //user login ,logout,students register,
+Route::get('/','Auth\AuthController@getlogin');
+Route::post('/','Auth\AuthController@postlogin');
+Route::get('auth/login','Auth\AuthController@getlogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-Route::group(['prefix'=>'backend'], function () {
+
+
+Route::group(['prefix'=>'backend','middleware'=>'auth'], function () {
+
 	Route::get('/', ['as' => 'backend', 'uses' => 'Backend\BackendController@index']);
 
-	Route::resource('student', 'Backend\StudentsController');
 
+	Route::resource('student', 'Backend\StudentsController');
+	
 });
