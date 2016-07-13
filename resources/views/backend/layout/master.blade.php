@@ -1,7 +1,5 @@
 @inject('user','Illuminate\Auth\Guard')
-<?php 
-       $user_name=$user->user()->name;
-?>
+<?php $user_name=$user->user()->name; ?>
 
 <!DOCTYPE html>
 <html>

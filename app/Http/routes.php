@@ -30,7 +30,7 @@ Route::group(['prefix'=>'backend','middleware'=>'auth'], function () {
 
 	Route::get('/', ['as' => 'backend', 'uses' => 'Backend\BackendController@index']);
 
-
+	Route::resource('blog','Backend\BlogsController');
 	Route::resource('student', 'Backend\StudentsController');
 	
 });

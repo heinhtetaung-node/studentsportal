@@ -42,6 +42,19 @@
                     <li @if (Request::is('backend/student/create')) class="active" @endif><a href="{{ url('backend/student/create') }}"><i class="fa fa-circle-o"></i> Create Student</a></li>
                 </ul>
             </li>
+
+
+            <li @if (Request::is('backend/blog*')) class="active" @endif class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>Blogs</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if (Request::is('backend/blog')) class="active" @endif><a href="{{ url('backend/blog') }}"><i class="fa fa-circle-o"></i> All Blogs</a></li>
+                    <li @if (Request::is('backend/blog/create')) class="active" @endif><a href="{{ url('backend/blog/create') }}"><i class="fa fa-circle-o"></i> Create Blog</a></li>
+                </ul>
+            </li>
+            
         </ul>
     </section>
     <!-- /.sidebar -->

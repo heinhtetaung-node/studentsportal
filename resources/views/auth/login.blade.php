@@ -18,11 +18,12 @@
         <div class="form-group has-feedback has-error">
         <label class="control-label" for="email"><i class="fa fa-times-circle-o"></i> {{ $errors->first('email') }}</label>
           @else
-      <div class="form-group has-feedback">
+        <div class="form-group has-feedback">
           @endif
         <input type="email" class="form-control" name="email" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
+        </div>
+
       @if($errors->has('password'))
         <div class="form-group has-feedback has-error">
         <label class="control-label" for="password"><i class="fa fa-times-circle-o"></i> {{ $errors->first('password') }}</label>
