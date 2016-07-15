@@ -1,5 +1,8 @@
 @inject('user','Illuminate\Auth\Guard')
-<?php $user_name=$user->user()->name; ?>
+<?php 
+    $user_name=$user->user()->name; 
+    $user_role=$user->user()->role['id'];
+?>
 
 <!DOCTYPE html>
 <html>

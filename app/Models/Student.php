@@ -9,9 +9,9 @@ class Student extends Model
     protected $fillable = [
         'name',
         'email',
-        'phone',
         'password',
-    ];
+        'phone',
+         ];
 
     public function setPasswordAttribute($password)
     {

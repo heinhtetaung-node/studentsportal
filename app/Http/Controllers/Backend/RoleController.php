@@ -1,23 +1,28 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-use App\Models\Blog;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use App\Models\Role;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-//use App\User;
-//use Auth;
-class BlogsController extends Controller
+
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct(Role $role)
     {
-        //
+         $this->authorize('role_policy',$role);
+    }
+
+    public function index()
+    {//
+       
+        var_dump("helloworld");die;
     }
 
     /**
@@ -25,17 +30,9 @@ class BlogsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Blog $blog)
+    public function create()
     {
-        $this->authorize('create',$blog);
-
-
-        // $user=Auth::user();
-        // $user=User::find($user->id)->role;
-        // var_dump($user);
-
-        return view('backend.blogs.register',['blog'=>$blog]);
-        
+        //
     }
 
     /**

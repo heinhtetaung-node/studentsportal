@@ -44,7 +44,7 @@ class StudentsController extends Controller
     public function store(StudentsRequest $request)
     {
         $stu = new Student();
-
+        //var_dump($request->all());die;
         $stu->create($request->all());
 
         return redirect()->route('backend.student.index');

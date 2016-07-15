@@ -55,6 +55,20 @@
                 </ul>
             </li>
             
+            <?php if($user_role==1): ?>
+                
+                  <li @if (Request::is('backend/role*')) class="active" @endif class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>Role</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if (Request::is('backend/role')) class="active" @endif><a href="{{ url('backend/role') }}"><i class="fa fa-circle-o"></i> All Role</a></li>
+                    <li @if (Request::is('backend/role/create')) class="active" @endif><a href="{{ url('backend/role/create') }}"><i class="fa fa-circle-o"></i> Create Role</a></li>
+                </ul>
+            </li>
+            <?php endif; ?>
+
         </ul>
     </section>
     <!-- /.sidebar -->

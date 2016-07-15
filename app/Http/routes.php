@@ -33,4 +33,6 @@ Route::group(['prefix'=>'backend','middleware'=>'auth'], function () {
 	Route::resource('blog','Backend\BlogsController');
 	Route::resource('student', 'Backend\StudentsController');
 	
+	Route::get('role','Backend\RoleController@index');
+	
 });
