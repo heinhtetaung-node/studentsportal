@@ -5,7 +5,7 @@
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css')}}">
+<link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.css')}}">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="{{ asset('plugins/iCheck/flat/blue.css') }}">
 <!-- Morris chart -->
 <link rel="stylesheet" href="{{ asset('plugins/morris/morris.css') }}">
+
 <!-- jvectormap -->
 <link rel="stylesheet" href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
 <!-- Date Picker -->

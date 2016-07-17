@@ -14,7 +14,7 @@
         // width in pixels of the visible scroll area
         width: 'auto',
         // height in pixels of the visible scroll area
-        height: '250px',
+        height: '786px',
         // width in pixels of the scrollbar and rail
         size: '7px',
         // scrollbar color, accepts any hex/color value
@@ -135,15 +135,15 @@
         var wrapper = $(divS)
                 .addClass(o.wrapperClass)
                 .css({
-                  position: 'relative',
-                  overflow: 'hidden',
+                  position: 'auto',
+                  overflow: 'overflow',
                   width: o.width,
                   height: o.height
                 });
 
         // update style for the div
         me.css({
-          overflow: 'hidden',
+          overflow: 'overflow',
           width: o.width,
           height: o.height,
           //Fix for IE10
@@ -171,7 +171,7 @@
                 .css({
                   background: o.color,
                   width: o.size,
-                  position: 'absolute',
+                  position: 'relative',
                   top: 0,
                   opacity: o.opacity,
                   display: o.alwaysVisible ? 'block' : 'none',

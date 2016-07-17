@@ -1442,6 +1442,9 @@ a:focus {
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
+
+.img-responsive,.img-center {margin:0 auto;}
+
 /*
  * Component: Small Box
  * --------------------
@@ -1525,12 +1528,13 @@ a:focus {
  * --------------
  */
 .box {
-  position: relative;
+  position: relative; 
   border-radius: 3px;
   background: #ffffff;
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
   width: 100%;
+  min-height:100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .box.box-primary {
@@ -1547,6 +1551,13 @@ a:focus {
 }
 .box.box-success {
   border-top-color: #00a65a;
+}
+/*for blog scroll*/
+.scroll-all{
+ 
+ height:1100px;
+
+
 }
 .box.box-default {
   border-top-color: #d2d6de;
@@ -1934,6 +1945,25 @@ a:focus {
 .chat {
   padding: 5px 20px 5px 10px;
 }
+/* for full */
+.full{
+  height: 1000px !important;
+}
+
+/*add like facebook post*/
+.profile-info{
+    overflow:hidden;
+}
+ 
+.profile-photo{
+    float:left;
+}
+.profile-name{
+    float:left; margin:0 0 0 .5em;
+}
+.profile-message{
+    margin:1em 0;
+}
 .chat .item {
   margin-bottom: 10px;
 }
@@ -1947,7 +1977,7 @@ a:focus {
 }
 .chat .item > img {
   width: 40px;
-  height: 40px;
+  height: 40px; 
   border: 2px solid transparent;
   border-radius: 50%;
 }
@@ -2511,6 +2541,9 @@ a:focus {
 .nav-tabs-custom > .nav-tabs > li:first-of-type.active > a {
   border-left-color: transparent;
 }
+
+/*blog right button*/
+
 .nav-tabs-custom > .nav-tabs.pull-right {
   float: none !important;
 }

@@ -15,10 +15,18 @@ class BlogsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+
+    }
+
+
+
     public function index()
     {
-        //
+        return view('backend.blogs.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,6 +55,8 @@ class BlogsController extends Controller
     public function store(Request $request)
     {
         //
+     //   var_dump($request);die;
+        dd($request);
     }
 
     /**

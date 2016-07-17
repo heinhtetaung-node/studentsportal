@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -43,6 +44,18 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+
+
+    // public function postLogin(Request $request)
+    // {
+    //     dd("helloworld");
+    //     //var_dump("hellworld");die;
+    // }
+
+
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -58,14 +71,35 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
+
+
+
+    
+    //overwriting the postRegister from trait
+    public function postRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+        //to deny
+         //Auth::login($this->create($request->all()));
+        $this->create($request->all());
+
+        return redirect($this->redirectPath());
+    }
+
+
     protected function create(array $data)
     {
-
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role_id' => 2,
         ]);
     }
 }

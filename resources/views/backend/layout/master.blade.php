@@ -56,7 +56,12 @@
 
 @include('backend.partials.js')
 
+
 @yield('js')
+
+<!-- custom js functions -->
+@yield('scripts')
+<!-- ./custom js functions -->
 
 </body>
 </html>
