@@ -9,6 +9,6 @@ class Blog extends Model
     //
     protected $table = 'blogs';
 
-    protected $fillable = ['description'];
+    protected $fillable = ['description','student_id','course_id','batch_id','delete_flag'];
 
 }

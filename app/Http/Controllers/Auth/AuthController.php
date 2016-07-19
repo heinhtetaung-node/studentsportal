@@ -72,7 +72,7 @@ class AuthController extends Controller
      * @return User
      */
 
-
+    
 
     
     //overwriting the postRegister from trait

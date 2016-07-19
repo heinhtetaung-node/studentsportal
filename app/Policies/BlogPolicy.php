@@ -20,6 +20,7 @@ class BlogPolicy
     public function __construct()
     {
         //
+        
     }
 
 

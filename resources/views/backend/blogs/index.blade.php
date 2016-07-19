@@ -24,15 +24,22 @@
 	            </div>
             <!-- /.box-header -->
             <!-- form start -->
-	            <form role="form" action="{{ route('backend.blog.store') }}" method="post">
+	            <form role="form" action="{{ route('backend.blog.store') }}" method="post" enctype="multipart/form-data">
+
+
+	           	
 	            	{{ csrf_field() }}
 	              <div class="box-body">
 
 	               	<div class="form-group">
 
+
 	                 	<!-- summernote -->
-	                 	<textarea id="summernote" name="description"> </textarea> 
-	                 	
+	                 	<div style="border:1px solid red; border-radius: 5px;">
+		                 	<textarea id="summernote" name="description" style="border-bottom: none; border:none; resize:none; border-radius: 5px 5px 0px 0px;" class="form-control" > </textarea>  
+		                 	<input type="file" id="summernote_file" style="padding: 10px;">
+	                 	</div>
+
 	                 	<!-- <textarea class="form-control" placeholder="What's on your mind?" style="font-size: 20px; height:65px; resize: none;"></textarea> -->
 	                 			
 	                 	<div class="box-footer">
@@ -177,13 +184,18 @@
   <script type="text/javascript">
   		$(document).ready(function() {
 
-       		 $('#summernote').summernote({
- 			 height: 250});
+       		// $('#summernote').summernote({height: 250});
 
        		 var i=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-body").children("div.form-group").eq(1).remove();
 			var j=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-footer").remove();
+			
 
-       		 console.log(i);
+
+			$("#summernote").focus(function(){
+					//#3C8DBC;
+			//	$(this).css("border-top:1px solid red !important;");
+			});
+       		
     	});	
   </script>
  @endsection

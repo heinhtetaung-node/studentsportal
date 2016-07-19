@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
+
 class StudentsController extends Controller
 {
     /**
@@ -16,7 +18,6 @@ class StudentsController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-
     public function index()
     {
         $students = Student::paginate(10);
@@ -47,6 +48,7 @@ class StudentsController extends Controller
         //var_dump($request->all());die;
         $stu->create($request->all());
 
+        
         return redirect()->route('backend.student.index');
     }
 

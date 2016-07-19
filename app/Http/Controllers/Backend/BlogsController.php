@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use App\Repositories\BlogRepository;
 //use App\User;
 //use Auth;
 class BlogsController extends Controller
@@ -15,15 +17,20 @@ class BlogsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
 
+    // to test
+    private $blog;
+
+    public function __construct(BlogRepository $blog)
+    {
+        $this->blog=$blog;
     }
 
 
 
     public function index()
     {
+        dd($this->blog->all());
         return view('backend.blogs.index');
     }
 
@@ -56,7 +63,10 @@ class BlogsController extends Controller
     {
         //
      //   var_dump($request);die;
-        dd($request);
+         $extension = $request['description'];
+
+         dd($extension);
+        //dd($request);
     }
 
     /**
