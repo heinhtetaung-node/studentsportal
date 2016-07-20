@@ -13,9 +13,8 @@ use Illuminate\Support\Collection;
 
 
 // business logic
-class BlogRepository extends BaseRepo
+class Blog2Repository extends BaseRepo
 {	
-
 	
 	// to define  what model because of abstract method in basesqlrepository
 	
@@ -29,13 +28,12 @@ class BlogRepository extends BaseRepo
 	{
 		// data or object query
 	
-		$this->applyCriteria();
-		$collection = $this->all();
-		
-		foreach($collection as $each)
-		{
-			dd($each->id);
-		}
+		//$this->applyCriteria();
+		//$collection = $this->all();
+		// foreach($collection as $each)
+		// {
+		// 	dd($each);
+		// }
 		// //dd($collection);
 		// foreach($collection as $each)
 		// {

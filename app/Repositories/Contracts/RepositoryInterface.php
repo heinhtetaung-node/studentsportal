@@ -1,11 +1,16 @@
 <?php 
+
+/**
+* @author hein-htet
+*/
+
 namespace App\Repositories\Contracts;
 
 interface RepositoryInterface
 {
 	//
 	public function all($columns=array("*"));
-
+	
 	//
 	public function create(array $data);
 

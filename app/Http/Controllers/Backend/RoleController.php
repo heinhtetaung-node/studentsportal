@@ -6,18 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Backend;
 
 class RoleController extends Controller
 {
+    public $var = "test";
+
+    function __construct(StudentsController $var)
+    {
+        dd($var);
+        $this->var="role test";
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(Role $role)
-    {
-         $this->authorize('role_policy',$role);
-    }
+    // public function __construct(Role $role)
+    // {
+    //      $this->authorize('role_policy',$role);
+    // }
 
     public function index()
     {//

@@ -1,5 +1,10 @@
 <?php
 
+/**
+* @author hein-htet
+*/
+
+
 namespace App\Http\Controllers\Backend;
 use App\Models\Blog;
 use Illuminate\Http\Request;
@@ -8,6 +13,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Repositories\BlogRepository;
+use App\Repositories\Criteria\BlogCriteria\BlogCriteria;
 //use App\User;
 //use Auth;
 class BlogsController extends Controller
@@ -19,10 +25,11 @@ class BlogsController extends Controller
      */
 
     // to test
-    private $blog;
+     private $blog;
 
     public function __construct(BlogRepository $blog)
-    {
+    { 
+       
         $this->blog=$blog;
     }
 
@@ -30,8 +37,15 @@ class BlogsController extends Controller
 
     public function index()
     {
-        dd($this->blog->all());
+      
+        $this->blog->pushCriteria(new BlogCriteria());
+         $this->blog->getAll();
+        //$this->blog->all();
+
+
+
         return view('backend.blogs.index');
+
     }
 
 
