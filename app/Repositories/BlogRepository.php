@@ -31,11 +31,14 @@ class BlogRepository extends BaseRepo
 	
 		$this->applyCriteria();
 		$collection = $this->all();
+
 		
 		foreach($collection as $each)
 		{
-			dd($each->id);
+			dd($each);
 		}
+
+
 		// //dd($collection);
 		// foreach($collection as $each)
 		// {
@@ -44,7 +47,7 @@ class BlogRepository extends BaseRepo
 		//dd(property_exists($this, "all"));
 		
 		//return $this->model->all();
-		die;
+		
 	}
 
 

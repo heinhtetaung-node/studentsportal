@@ -17,7 +17,7 @@ class BlogCriteria extends Criteria
 	
 	public function apply($model, Repository $repository)
     {
-        $query = $model->where('delete_flag', '=', 1);
+        $query = $model->where('delete_flag', '=', 0);
         return $query;
     }
 

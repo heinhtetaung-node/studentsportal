@@ -28,8 +28,7 @@ class BlogsController extends Controller
      private $blog;
 
     public function __construct(BlogRepository $blog)
-    { 
-       
+    {        
         $this->blog=$blog;
     }
 
@@ -40,9 +39,6 @@ class BlogsController extends Controller
       
         $this->blog->pushCriteria(new BlogCriteria());
          $this->blog->getAll();
-        //$this->blog->all();
-
-
 
         return view('backend.blogs.index');
 

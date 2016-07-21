@@ -189,7 +189,30 @@
        		 var i=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-body").children("div.form-group").eq(1).remove();
 			var j=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-footer").remove();
 			
+			var bottom;
+			
+			bottom=$(document).height()-$(window).height();
 
+
+
+			$(window).scroll(function(){
+
+				var scroll=$(this).scrollTop()+$(this).height()-$(document).height();
+				console.log(scroll);
+
+				// need to change the condition
+				if(scroll==0)
+				{
+					//$.ajax();
+					alert("You have reached to the bottom");	
+				}
+				
+
+
+			});
+
+
+			
 
 			$("#summernote").focus(function(){
 					//#3C8DBC;

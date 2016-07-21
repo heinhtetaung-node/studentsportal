@@ -36,13 +36,14 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 	protected $skipCriteria=false;
 
 
+	// two dependencies injection 
 	function __construct(App $app,Collection $collection)
 	{
 			
 			// IOC container to inject 
 			$this->app=$app;
 
-			// criteria for push into object
+			// criteria is laravel object and array manulation collection for push into object
 			$this->criteria=$collection;
 			
 			// reset the skipCriteria to false when call another retrieve method
@@ -85,7 +86,7 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 	public function all($columns=array("*"))
 	{
 		$this->applyCriteria();
-		
+
 		return $this->model->get($columns);
 	}
 	
