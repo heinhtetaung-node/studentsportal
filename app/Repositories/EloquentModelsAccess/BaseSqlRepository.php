@@ -86,7 +86,6 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 	public function all($columns=array("*"))
 	{
 		$this->applyCriteria();
-
 		return $this->model->get($columns);
 	}
 	
@@ -129,6 +128,12 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 	// }
 
 
+	public function get_scroll()
+	{
+
+		return $this->model->get($columns);
+	}
+
 
 
 ////////////////////////////////////////////////////////////////////// Criteria to use in retrieve
@@ -167,6 +172,8 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 			{
 				$this->model = $criteria->apply($this->model, $this);
 			}
+
+			
 		}
 
 		//dd($criteria->apply());

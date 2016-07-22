@@ -6,7 +6,8 @@
 <div class="row">
         <!-- left column -->
         <div class="col-md-12">
-        	 <div class="box box-primary">
+
+        	<div class="box box-primary">
 
 	            <div class="box-header with-border">
 		             <div class="col-md-6">
@@ -24,6 +25,9 @@
 	            </div>
             <!-- /.box-header -->
             <!-- form start -->
+            
+            
+
 	            <form role="form" action="{{ route('backend.blog.store') }}" method="post" enctype="multipart/form-data">
 
 
@@ -31,6 +35,7 @@
 	            	{{ csrf_field() }}
 	              <div class="box-body">
 
+	              <!-- form group -->
 	               	<div class="form-group">
 
 
@@ -47,21 +52,19 @@
 	                 	</div>
 	             
 	                  <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> -->
-	                </div>
-		              
-		               	
-	              
+	                </div>		              		               	  
+		            <hr/>
+		            <!-- /.form group -->
 
-		           <hr/>
-
+		        <!-- form group -->
 	                 <div class="form-group">
 	                  	<div class="item">
 	                  		 <div class="row">
-        						<div class="col-sm-2 text-center">
-        							<img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle" height="65" width="65" alt="Avatar">
-       							</div>
-       							
-                  				<div class="box-tool pull-right" style="position: absolute;margin-top: 4px;right: 80px;">
+	    						<div class="col-sm-2 text-center">
+	    							<img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle" height="65" width="65" alt="Avatar">
+	   							</div>
+	   							
+	              				<div class="box-tool pull-right" style="position: absolute;margin-top: 4px;right: 80px;">
 
 		 	 		 					<div class="btn-group">
 		 	 		 						<button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -78,98 +81,56 @@
 		 	 		 					</div>
 
 		 	 		 				</div>
-               				
-        						<div class="col-sm-10">
-          							<h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
-          							<p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          							<br>
-        						</div>
-        					</div>
+	           				
+	    						<div class="col-sm-10">
+	      							<h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
+	      							<p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	      							<br>
+	    						</div>
+	    					</div>
 							</div>
 	 	 		 			<hr>
 	 	 		 		
 	              <!-- /.item -->
-		 	 		 	</div>
+		 	 		 </div>
 		 	 	<!-- /.form-group -->
-	                </div>
+
+
+
+		 	 			   <!--  to inject the data from scroll -->
+		                <div id="scroll_data" style="display:none">
+							
+
+
+		                </div>
+			                <!-- /.data from scroll -->
+
+			        <!-- /. -->
+	               </div>
 
 
 	            
 
-	                 <div class="form-group">
-	                  	<div class="item">
-	                  	
-	                  	
-	                  	
-		                  	<div class="row">
-
-		                  	<div class=col-md-2 >
-		 	 		 			<img src="{{ asset('dist/img/user2-160x160.jpg')}}" alt="user image" class="img-circle" class="img-responsive img-center" height="40" width="40">
-		 	 		 		</div>
-
-	 	 		 			<div class=col-md-10>
-		 	 		 			<div class="box" style="margin-bottom: 0px; border-top: none;">
-		 	 		 				<div class="box-tools pull-right">
-
-		 	 		 					<div class="btn-group">
-		 	 		 						<button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		 	 		 							<i class="fa fa-wrench"></i>
-		 	 		 						</button>
-		 	 		 						<ul class="dropdown-menu" style="left:-137px;" role="menu">
-		 	 		 							<li>
-		 	 		 								<a href="#">Edit</a>
-		 	 		 							</li>
-		 	 		 							<li>
-		 	 		 								<a href="#">Delete</a>
-		 	 		 							</li>
-		 	 		 						</ul>
-		 	 		 					</div>
-
-		 	 		 				</div>
-		 	 		 			</div>
-
-		 	 		 			<label>Susan Doe</label>
-		 	 		 			<div class="row">
-		 	 		 			<div class="col-md-12">
-				                <p class="message">
-				                  <a href="#" class="name">
-				                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-				                    
-				                  </a>
-				                  I would like to meet you to discuss the latest news about
-				                  the arrival of the new theme. They say it is going to be one the
-				                  best themes on the market
-				                </p>
-				                </div>
-				                </div>
-				              </div>
+	                 
 
 
-		 	 		 		</div>
-	 	 		 			<hr>
-	 	 		 		
-	              <!-- /.item -->
-		 	 		 	</div>
-		 	 	<!-- /.form-group -->
-	                </div>
 
+	             
 	                
 
-	                </div>
-	              <!-- /.box-body -->
+	          
 
 	              
 	            </form>
 
 
-
-	            <!-- end of box primary -->
-          </div>
+	          <!-- end of box primary -->
+         </div>
         
 
 
+	</div>
 </div>
-
 
  @endsection
 
@@ -186,25 +147,45 @@
 
        		// $('#summernote').summernote({height: 250});
 
-       		 var i=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-body").children("div.form-group").eq(1).remove();
+       		var i=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-body").children("div.form-group").eq(1).remove();
 			var j=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-footer").remove();
 			
 			var bottom;
-			
+			// <div class="col-sm-10">
+	  //     							<h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
+	  //     							<p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	  //     							<br>
+	  //   						</div>
+			var blog_post="<div class='form-group> <div class='item'> <div class='row'> <div class='col-sm-2 text-center'> <img src='{{ asset('dist/img/user2-160x160.jpg')}}' class='img-circle' height='65' width='65' alt='Avatar'> </div>  </div>	</div> 	</div> ";
+
+
+
 			bottom=$(document).height()-$(window).height();
+			url="{{ url('backend/blog/ajax') }}";
 
 
 
 			$(window).scroll(function(){
 
 				var scroll=$(this).scrollTop()+$(this).height()-$(document).height();
-				console.log(scroll);
+				//console.log(scroll);
 
-				// need to change the condition
+				
 				if(scroll==0)
 				{
-					//$.ajax();
-					alert("You have reached to the bottom");	
+					
+					 $.post(url,{data:"data",_token:$('input[name=_token]').val()},function(value){
+					 		// var scrolldata_length=$("div#scroll_data").children("div.form-group").length;
+					 		
+
+					 		// to know the end of the blog
+					 		$("div#scroll_data").append(blog_post).fadeIn("slow");
+					 		// $("div#scroll");
+					 							 			
+					 		
+					 		// end of post method
+					 },"json");
+
 				}
 				
 
@@ -214,10 +195,10 @@
 
 			
 
-			$("#summernote").focus(function(){
-					//#3C8DBC;
-			//	$(this).css("border-top:1px solid red !important;");
-			});
+			// $("#summernote").focus(function(){
+			// 		//#3C8DBC;
+			// //	$(this).css("border-top:1px solid red !important;");
+			// });
        		
     	});	
   </script>

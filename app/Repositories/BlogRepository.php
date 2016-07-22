@@ -28,15 +28,17 @@ class BlogRepository extends BaseRepo
 	public function getAll($columns=array("*"))
 	{
 		// data or object query
-	
 		$this->applyCriteria();
-		$collection = $this->all();
+		$collection = $this->all()->toArray();
 
 		
-		foreach($collection as $each)
-		{
-			dd($each);
-		}
+		// foreach($collection as $each)
+		// {
+			
+		// }
+		return $collection;
+
+
 
 
 		// //dd($collection);
