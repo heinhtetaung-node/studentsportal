@@ -39,8 +39,6 @@ class BlogRepository extends BaseRepo
 		return $collection;
 
 
-
-
 		// //dd($collection);
 		// foreach($collection as $each)
 		// {

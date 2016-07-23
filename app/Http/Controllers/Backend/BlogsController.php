@@ -38,8 +38,8 @@ class BlogsController extends Controller
     {
       
         $this->blog->pushCriteria(new BlogCriteria());
+        
         $this->blog->getAll();
-
         return view('backend.blogs.index')->with('hi',"asfasdadsf")->with('hello','this is hello');
 
     }
@@ -125,7 +125,7 @@ class BlogsController extends Controller
     }
 
 
-////////////////////////  ajax call for   /////////////////////////////////
+    ////////////////////////  ajax call for   /////////////////////////////////
 
     public function listing_access()
     {
@@ -137,8 +137,8 @@ class BlogsController extends Controller
 
 
         return response($items);
-        
         exit();
+
     }
 
 

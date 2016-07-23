@@ -108,19 +108,7 @@
 			        <!-- /. -->
 	               </div>
 
-
-	            
-
-	                 
-
-
-
-	             
-	                
-
-	          
-
-	              
+      
 	            </form>
 
 
@@ -167,13 +155,17 @@
 
 			$(window).scroll(function(){
 
+				//console.log($(this).height()+0.7);
+				
+
+
+
 				var scroll=$(this).scrollTop()+$(this).height()-$(document).height();
-				//console.log(scroll);
+
 
 				
-				if(scroll==0)
+				if(scroll>=-1)
 				{
-					
 					 $.post(url,{data:"data",_token:$('input[name=_token]').val()},function(value){
 					 		// var scrolldata_length=$("div#scroll_data").children("div.form-group").length;
 					 		

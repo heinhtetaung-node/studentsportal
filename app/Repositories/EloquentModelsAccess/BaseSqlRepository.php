@@ -161,8 +161,7 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 
 	public function applyCriteria()
 	{
-		
-		
+				
 		if($this->skipCriteria===true)
 			return $this;
 
@@ -173,7 +172,7 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 				$this->model = $criteria->apply($this->model, $this);
 			}
 
-			
+
 		}
 
 		//dd($criteria->apply());
