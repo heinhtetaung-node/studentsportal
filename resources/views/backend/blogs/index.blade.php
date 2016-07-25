@@ -57,53 +57,57 @@
 		            <!-- /.form group -->
 
 		        <!-- form group -->
+		        	@foreach ($blogs as $blog)
 	                 <div class="form-group">
 	                  	<div class="item">
-	                  		 <div class="row">
-	    						<div class="col-sm-2 text-center">
-	    							<img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle" height="65" width="65" alt="Avatar">
-	   							</div>
-	   							
-	              				<div class="box-tool pull-right" style="position: absolute;margin-top: 4px;right: 80px;">
+		                  		 <div class="row">
+		    						<div class="col-sm-2 text-center">
+		    							<img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle" height="65" width="65" alt="Avatar">
+		   							</div>
+		   							
+		              				<div class="box-tool pull-right" style="position: absolute;margin-top: 4px;right: 80px;">
 
-		 	 		 					<div class="btn-group">
-		 	 		 						<button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		 	 		 							<i class="fa fa-wrench"></i>
-		 	 		 						</button>
-		 	 		 						<ul class="dropdown-menu" style="left:-137px;" role="menu">
-		 	 		 							<li>
-		 	 		 								<a href="#">Edit</a>
-		 	 		 							</li>
-		 	 		 							<li>
-		 	 		 								<a href="#">Delete</a>
-		 	 		 							</li>
-		 	 		 						</ul>
-		 	 		 					</div>
+			 	 		 					<div class="btn-group">
+			 	 		 						<button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			 	 		 							<i class="fa fa-wrench"></i>
+			 	 		 						</button>
+			 	 		 						<ul class="dropdown-menu" style="left:-137px;" role="menu">
+			 	 		 							<li>
+			 	 		 								<a href="#">Edit</a>
+			 	 		 							</li>
+			 	 		 							<li>
+			 	 		 								<a href="#">Delete</a>
+			 	 		 							</li>
+			 	 		 						</ul>
+			 	 		 					</div>
 
-		 	 		 				</div>
-	           				
-	    						<div class="col-sm-10">
-	      							<h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
-	      							<p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	      							<br>
-	    						</div>
-	    					</div>
+			 	 		 				</div>
+		           					
+		    						<div class="col-sm-10">
+		    							
+		      							<h4>{{ $blog->user->name }} <small>{{ $blog->created_at }}</small></h4>
+		      							<p>{{ $blog->description }}</p>
+		      							<br>
+		    						</div>
+		    					</div>
 							</div>
-	 	 		 			<hr>
+	 	 		 			
 	 	 		 		
 	              <!-- /.item -->
 		 	 		 </div>
 		 	 	<!-- /.form-group -->
+		 	 	@endforeach
 
 
 
-		 	 			   <!--  to inject the data from scroll -->
-		                <div id="scroll_data" style="display:none">
-							
+
+	 	 			   <!--  to inject the data from scroll -->
+	                <div id="scroll_data" style="display:none">
+						
 
 
-		                </div>
-			                <!-- /.data from scroll -->
+	                </div>
+		                <!-- /.data from scroll -->
 
 			        <!-- /. -->
 	               </div>
@@ -123,13 +127,13 @@
  @endsection
 
  @section('css')
- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+ <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet"> -->
 
  @endsection
  
  @section('scripts')
-
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+<!-- 
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script> -->
   <script type="text/javascript">
   		$(document).ready(function() {
 
@@ -139,26 +143,15 @@
 			var j=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-footer").remove();
 			
 			var bottom;
-			// <div class="col-sm-10">
-	  //     							<h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
-	  //     							<p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	  //     							<br>
-	  //   						</div>
-			var blog_post="<div class='form-group> <div class='item'> <div class='row'> <div class='col-sm-2 text-center'> <img src='{{ asset('dist/img/user2-160x160.jpg')}}' class='img-circle' height='65' width='65' alt='Avatar'> </div>  </div>	</div> 	</div> ";
+
+			
 
 
 
 			bottom=$(document).height()-$(window).height();
 			url="{{ url('backend/blog/ajax') }}";
 
-
-
 			$(window).scroll(function(){
-
-				//console.log($(this).height()+0.7);
-				
-
-
 
 				var scroll=$(this).scrollTop()+$(this).height()-$(document).height();
 
@@ -166,16 +159,21 @@
 				
 				if(scroll>=-1)
 				{
-					 $.post(url,{data:"data",_token:$('input[name=_token]').val()},function(value){
-					 		// var scrolldata_length=$("div#scroll_data").children("div.form-group").length;
-					 		
 
-					 		// to know the end of the blog
-					 		$("div#scroll_data").append(blog_post).fadeIn("slow");
-					 		// $("div#scroll");
-					 							 			
+					 $.post(url,{data:"data",_token:$('input[name=_token]').val()},function(data){
+					 							 		
+					 		// inject value with html partial template
+					 		var template_blog=" ";
 					 		
-					 		// end of post method
+					 		$.each(data,function(key,value){
+					 			
+					 			template_blog="<hr><div class='form-group'> <div class='item'> <div class='row'> <div class='col-sm-2 text-center'> <img src='{{ asset('dist/img/user2-160x160.jpg')}}' class='img-circle' height='65' width='65' alt='Avatar'> </div> 		<div class='col-sm-10'> <h4>"+value.user.name+" <small>"+value.created_at+"</small> </h4> <p>"+value.description+"</p><br> </div> 	 </div> </div> </div>";
+					 			
+					 			$("div#scroll_data").append(template_blog).fadeIn("slow");
+					 			
+					 		});
+					 		
+				 		// to know the end of the blog						 						 // end of post method
 					 },"json");
 
 				}

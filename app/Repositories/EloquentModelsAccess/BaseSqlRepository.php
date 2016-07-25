@@ -15,6 +15,7 @@ use App\Repositories\Criteria\Criteria;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Container\Container as App;
 use Illuminate\Support\Collection;
+use Illuminate\Http\Request;
 
 // access logic
 abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterface
@@ -51,8 +52,6 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 
 			// to return the model object
 			$this->makemodel();
-
-			
 	}
 
 	//let the repository define the model
@@ -74,19 +73,33 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 
 		//return $this->model=$this;
 	}
-
-
-
+	
 
 
 	///////////////////////////////////////////
 	
 	// retrieve access logic
 						
-	public function all($columns=array("*"))
+	//first parameter to filter including the orm or not 
+	public function all($orm="",$condition=0,$columns=array("*"))
 	{
+		// with or without Eloquent ORM
+		if(!empty($orm) && is_string($orm))
+		{	
+			//->offset($offset)
+			$model=$this->model->orderBy('id','DESC')->limit(5)->with($orm);
+		}else
+		{
+			$model=$this->model->orderBy('id','DESC')->limit(5);
+		}
+
+		//for condition parameter 
+		if(is_int($condition) && $condition!==0)
+			$model=$model->where("id","<",$condition);
+
+
 		$this->applyCriteria();
-		return $this->model->get($columns);
+		return $model->get($columns);
 	}
 	
 

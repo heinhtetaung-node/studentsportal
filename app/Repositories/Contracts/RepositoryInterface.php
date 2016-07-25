@@ -6,10 +6,12 @@
 
 namespace App\Repositories\Contracts;
 
+
 interface RepositoryInterface
 {
+	
 	//
-	public function all($columns=array("*"));
+	public function all($orm="",$condition=0,$columns=array("*"));
 	
 	//
 	public function create(array $data);

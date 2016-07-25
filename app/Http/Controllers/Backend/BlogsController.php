@@ -14,8 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Repositories\BlogRepository;
 use App\Repositories\Criteria\BlogCriteria\BlogCriteria;
-//use App\User;
-//use Auth;
+
 class BlogsController extends Controller
 {
     /**
@@ -34,13 +33,12 @@ class BlogsController extends Controller
 
 
 
-    public function index()
+    public function index(Request $request)
     {
-      
         $this->blog->pushCriteria(new BlogCriteria());
-        
-        $this->blog->getAll();
-        return view('backend.blogs.index')->with('hi',"asfasdadsf")->with('hello','this is hello');
+        $blog_post=$this->blog->getAll($request); 
+       
+        return view('backend.blogs.index')->with('blogs',$blog_post);
 
     }
 
@@ -53,11 +51,6 @@ class BlogsController extends Controller
     public function create(Blog $blog)
     {
         $this->authorize('create',$blog);
-
-
-        // $user=Auth::user();
-        // $user=User::find($user->id)->role;
-        // var_dump($user);
 
         return view('backend.blogs.register',['blog'=>$blog]);
         
@@ -127,14 +120,13 @@ class BlogsController extends Controller
 
     ////////////////////////  ajax call for   /////////////////////////////////
 
-    public function listing_access()
+    public function listing_access(Request $request)
     {
-        
-       
-        $this->blog->pushCriteria(new BlogCriteria());
-        $items=$this->blog->getAll();
-        
 
+        $this->blog->pushCriteria(new BlogCriteria());
+
+        $items=$this->blog->getScroll($request);
+        
 
         return response($items);
         exit();

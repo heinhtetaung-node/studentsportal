@@ -22,7 +22,7 @@ class RoleController extends Controller
     }
 
     public function index()
-    {//
+    {
        
         var_dump("helloworld");die;
     }

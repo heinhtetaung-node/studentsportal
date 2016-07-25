@@ -10,6 +10,7 @@ use App\Repositories\Contracts\RepositoryInterface;
 use App\Repositories\EloquentModelsAccess\BaseSqlRepository as BaseRepo;
 use Illuminate\Container\Container as App;
 use Illuminate\Support\Collection;
+use Illuminate\Http\Request;
 
 
 // business logic
@@ -24,18 +25,39 @@ class BlogRepository extends BaseRepo
 		return "App\Models\Blog";
 	}
 
-
-	public function getAll($columns=array("*"))
+	public function getAll(Request $request,$columns=array("*"))
 	{
-		// data or object query
-		$this->applyCriteria();
-		$collection = $this->all()->toArray();
 
+		$this->applyCriteria();
+		$collection = $this->all("user");
+
+		foreach ($collection as $key => $value) {
+			# code...
+			$id=$value->id;
+		}
+
+		$request->session()->put('condition',(int)$id);
+
+		return $collection;
+	}
+
+
+	public function getScroll(Request $request,$columns=array("*"))
+	{		
 		
-		// foreach($collection as $each)
-		// {
-			
-		// }
+		$this->applyCriteria();
+		$collection = $this->all("user",(int)$request->session()->get('condition'));
+
+		foreach ($collection as $key => $value) {
+			# code...
+			$id=$value->id;
+		}
+
+		if(isset($id))
+		{
+			$request->session()->put('condition',(int)$id);
+		}
+
 		return $collection;
 
 
@@ -47,6 +69,7 @@ class BlogRepository extends BaseRepo
 		//dd(property_exists($this, "all"));
 		
 		//return $this->model->all();
+		
 		
 	}
 
