@@ -55,6 +55,10 @@
 	                </div>		              		               	  
 		            
 		            <!-- /.form group -->
+		            <div id="newpost" style="display:none">
+		            asjfklasjdklfaskldfjklasdflkajsdklfjaskldf aksjklfaskdf
+		            </div>
+
 
 		        <!-- form group -->
 		        	@foreach ($blogs as $blog)
@@ -181,11 +185,15 @@
 				
 			});
 
-			// to prepend the data from the top of the blog every .. minutes or seconds
-			
-			// setInterval(function(){ alert("Hello"); 
 
-			// }, time);	
+
+			// to prepend the data from the top of the blog every .. minutes or seconds
+
+			 setInterval(function(){
+
+			 	$("div#newpost").fadeIn("slow");
+
+			 }, time);	
 
        		
     	});	
