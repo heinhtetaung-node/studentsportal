@@ -28,7 +28,7 @@ class BlogRepository extends BaseRepo
 	public function getAll(Request $request,$columns=array("*"))
 	{
 		$id=0;
-		
+
 		$this->applyCriteria();
 		$collection = $this->all("user");
 
@@ -36,7 +36,7 @@ class BlogRepository extends BaseRepo
 			# code...
 			$id=$value->id;
 		}
-		
+
 		$request->session()->put('condition',(int)$id);
 
 		return $collection;
@@ -45,7 +45,7 @@ class BlogRepository extends BaseRepo
 
 	public function getScroll(Request $request,$columns=array("*"))
 	{		
-		
+	
 		$this->applyCriteria();
 		$collection = $this->all("user",(int)$request->session()->get('condition'));
 
