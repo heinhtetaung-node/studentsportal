@@ -53,11 +53,12 @@
 	             
 	                  <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> -->
 	                </div>		              		               	  
-		            <hr/>
+		            
 		            <!-- /.form group -->
 
 		        <!-- form group -->
 		        	@foreach ($blogs as $blog)
+		        	<hr/>
 	                 <div class="form-group">
 	                  	<div class="item">
 		                  		 <div class="row">
