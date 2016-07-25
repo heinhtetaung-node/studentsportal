@@ -143,6 +143,7 @@
        		var i=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-body").children("div.form-group").eq(1).remove();
 			var j=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-footer").remove();
 			
+			var time=3000;
 			var bottom;
 
 			
@@ -153,7 +154,6 @@
 			url="{{ url('backend/blog/ajax') }}";
 
 			$(window).scroll(function(){
-
 				var scroll=$(this).scrollTop()+$(this).height()-$(document).height();
 
 
@@ -179,17 +179,14 @@
 
 				}
 				
-
-
 			});
 
-
+			// to prepend the data from the top of the blog every .. minutes or seconds
 			
+			// setInterval(function(){ alert("Hello"); 
 
-			// $("#summernote").focus(function(){
-			// 		//#3C8DBC;
-			// //	$(this).css("border-top:1px solid red !important;");
-			// });
+			// }, time);	
+
        		
     	});	
   </script>
