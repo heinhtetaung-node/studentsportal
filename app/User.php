@@ -18,10 +18,7 @@ class User extends Model implements AuthenticatableContract,
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
-    public function __construct()
-    {
-     //   $this->where("users.delete_flag",'=',0);
-    }
+    
 
     /**
      * The database table used by the model.
@@ -35,14 +32,14 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','role_id','user_delete_flag'];
+    protected $fillable = ['name', 'email','role_id','delete_flag','password'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['remember_token'];
     
 
 

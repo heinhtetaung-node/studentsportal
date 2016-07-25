@@ -85,9 +85,14 @@ class AuthController extends Controller
                 $request, $validator
             );
         }
+
         //to deny
          //Auth::login($this->create($request->all()));
-        $this->create($request->all());
+
+
+      // dd($request->all());
+       
+       $this->create($request->all());
 
         return redirect($this->redirectPath());
     }
@@ -95,11 +100,15 @@ class AuthController extends Controller
 
     protected function create(array $data)
     {
+       
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'role_id' => 2,
-        ]);
+            'delete_flag'=>0,
+            ]);
     }
+
 }
