@@ -33,7 +33,7 @@ Route::group(['prefix'=>'backend','middleware'=>'auth'], function () {
 	Route::resource('blog','Backend\BlogsController');
 
 	Route::post('blog/ajax','Backend\BlogsController@listing_access');
-
+	Route::post('blog/newpost','Backend\BlogsController@listing_newpost');
 
 	Route::resource('student', 'Backend\StudentsController');
 	

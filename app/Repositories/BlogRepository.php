@@ -31,13 +31,16 @@ class BlogRepository extends BaseRepo
 
 		$this->applyCriteria();
 		$collection = $this->all("user");
+		$first_id=$collection[0]->id;
 
 		foreach ($collection as $key => $value) {
 			# code...
-			$id=$value->id;
+			$last_id=$value->id;
 		}
 
-		$request->session()->put('condition',(int)$id);
+		$request->session()->put('condition',(int)$last_id);
+		$request->session()->put('newpost_condition',(int)$first_id);
+		
 
 		return $collection;
 	}
@@ -74,6 +77,13 @@ class BlogRepository extends BaseRepo
 		
 	}
 
+	public function getNewPost(Request $request,$columns=array("*"))
+	{
+		$this->applyCriteria();
+		
+		return $this->all("user",(int)$request->session()->get('newpost_condition'),">");
+
+	}
 
 
 	public function find()

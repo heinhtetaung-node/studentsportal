@@ -4960,6 +4960,7 @@ button for new blogs
 .btn:focus, .btn:active:focus, .btn.active:focus {
   outline: 0 none;
 }
+
 .btn.round {
   border-radius: 24px;
 }

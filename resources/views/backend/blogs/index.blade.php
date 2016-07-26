@@ -44,7 +44,7 @@
 		                 	<input type="file" id="summernote_file" style="padding: 10px;">
 	                 	</div>
 
-	                 	<!-- <textarea class="form-control" placeholder="What's on your mind?" style="font-size: 20px; height:65px; resize: none;"></textarea> -->
+	                 	
 	                 			
 	                 	<div class="box-footer">
 	                 		<button class="btn btn-primary" style="margin-left:96%;">Post</button>
@@ -63,12 +63,13 @@
 		            <!-- for new feed buttons -->
 	                  <div class="container" id="newpost" style="display:none">
 	                  <div class="row">
-	                  <div class="col-lg-4"></div>
-	                  <div class="col-lg-4 text-center">
-	                  <button type="button" class="btn btn-primary round" id="b1" data-dismiss="modal"> New Blogs &nbsp<span aria-hidden="true">&times;</span>
-    				  </button>
-    				  </div>
-	                  <div class="col-lg-4"></div>
+		                  <div class="col-lg-4"></div>
+		                  <div class="col-lg-4 text-center">
+				                  <button type="button" class="btn btn-primary round" id="b1" data-dismiss="modal"> New Blogs &nbsp
+			    				  </button>
+			    				  <span aria-hidden="true" id="close">&times;</span>
+	    				  </div>
+		                  <div class="col-lg-4"></div>
 	                  </div>	
 	                  </div>
 
@@ -162,7 +163,7 @@
        		var i=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-body").children("div.form-group").eq(1).remove();
 			var j=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-footer").remove();
 			
-			var time=3000;
+			var time=10000;
 			var bottom;
 
 			
@@ -171,6 +172,7 @@
 
 			bottom=$(document).height()-$(window).height();
 			url="{{ url('backend/blog/ajax') }}";
+			new_url="{{ url('backend/blog/newpost') }}";
 
 			$(window).scroll(function(){
 				var scroll=$(this).scrollTop()+$(this).height()-$(document).height();
@@ -205,12 +207,30 @@
 
 			 setInterval(function(){
 
-			 	//$.post(,);
+			 	// post request 
+			 	$.post(new_url,{_token:$('input[name=_token]').val()},function(data){
+			 		console.log(data);
+			 	},"json");
+
 			 	$("div#newpost").fadeIn("slow");
 
 			 }, time);	
 
+			 
+
+       		$("#close").on('click',function()
+       		{
+       			$("div#newpost").fadeOut("slow");
+
+       		});	
        		
+       		//button
+       		$('button#b1').on("click",function(){
+
+       			$("div#newpost").fadeOut("slow");
+       		});
+       		
+
     	});	
   </script>
  @endsection

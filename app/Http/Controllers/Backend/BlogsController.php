@@ -131,6 +131,15 @@ class BlogsController extends Controller
         return response($items);
         exit();
 
+    }   
+
+    public function listing_newpost(Request $request)
+    {   
+        $this->blog->pushCriteria(new BlogCriteria());
+        $items=$this->blog->getNewPost($request);
+
+        return response($items);
+        exit();
     }
 
 
