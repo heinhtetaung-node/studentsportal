@@ -23,8 +23,8 @@
 	              	</div>
 
 	            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
+           		<!-- /.box-header -->
+            	<!-- form start -->
             
             
 
@@ -37,7 +37,6 @@
 
 	              <!-- form group -->
 	               	<div class="form-group">
-
 
 	                 	<!-- summernote -->
 	                 	<div style="border:1px solid red; border-radius: 5px;">
@@ -54,10 +53,26 @@
 	                  <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> -->
 	                </div>		              		               	  
 		            
-		            <!-- /.form group -->
-		            <div id="newpost" style="display:none">
+		            
+		    <!--         <div id="newpost" style="display:none">
 		            asjfklasjdklfaskldfjklasdflkajsdklfjaskldf aksjklfaskdf
-		            </div>
+
+		            </div> -->
+
+
+		            <!-- for new feed buttons -->
+	                  <div class="container" id="newpost" style="display:none">
+	                  <div class="row">
+	                  <div class="col-lg-4"></div>
+	                  <div class="col-lg-4 text-center">
+	                  <button type="button" class="btn btn-primary round" id="b1" data-dismiss="modal"> New Blogs &nbsp<span aria-hidden="true">&times;</span>
+    				  </button>
+    				  </div>
+	                  <div class="col-lg-4"></div>
+	                  </div>	
+	                  </div>
+
+
 
 
 		        <!-- form group -->
@@ -186,11 +201,11 @@
 			});
 
 
-
 			// to prepend the data from the top of the blog every .. minutes or seconds
 
 			 setInterval(function(){
 
+			 	//$.post(,);
 			 	$("div#newpost").fadeIn("slow");
 
 			 }, time);	
