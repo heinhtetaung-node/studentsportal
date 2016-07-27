@@ -81,6 +81,7 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 	// retrieve access logic
 						
 	//first parameter to filter including the orm or not 
+	//second parameter is to filter session is exit or not for 
 	public function all($orm="",$condition=0,$sign="<",$columns=array("*"))
 	{
 		// with or without Eloquent ORM
@@ -95,7 +96,16 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 
 		//for condition parameter 
 		if(is_int($condition) && $condition!==0)
-			$model=$model->where("id",$sign,$condition);
+		{
+
+			if($sign==">")
+			{
+				$model=$model->where("id",$sign,$condition)->orwhere("id","=",$condition);
+			}else{
+				$model=$model->where("id",$sign,$condition);
+			}
+
+		}
 
 
 		$this->applyCriteria();

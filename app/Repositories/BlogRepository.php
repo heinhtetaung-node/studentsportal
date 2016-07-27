@@ -31,7 +31,7 @@ class BlogRepository extends BaseRepo
 
 		$this->applyCriteria();
 		$collection = $this->all("user");
-		$first_id=$collection[0]->id;
+		$first_id=$collection[0]->id+1;
 
 		foreach ($collection as $key => $value) {
 			# code...
@@ -56,6 +56,7 @@ class BlogRepository extends BaseRepo
 			# code...
 			$id=$value->id;
 		}
+		
 
 		if(isset($id))
 		{
@@ -72,17 +73,20 @@ class BlogRepository extends BaseRepo
 		// }
 		//dd(property_exists($this, "all"));
 		
-		//return $this->model->all();
-		
-		
+		//return $this->model->all();		
 	}
 
 	public function getNewPost(Request $request,$columns=array("*"))
 	{
 		$this->applyCriteria();
-		
-		return $this->all("user",(int)$request->session()->get('newpost_condition'),">");
+		$collection=$this->all("user",(int)$request->session()->get('newpost_condition'),">");
 
+		// if(count($collection)!==0)
+		// {
+		// 	$request->session()->put('newpost_condition',(int)$collection[0]->id); 
+		// }
+
+		return $collection;
 	}
 
 

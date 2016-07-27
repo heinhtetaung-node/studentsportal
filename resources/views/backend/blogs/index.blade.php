@@ -209,22 +209,28 @@
 
 			 	// post request 
 			 	$.post(new_url,{_token:$('input[name=_token]').val()},function(data){
-			 		console.log(data);
+			 		
+			 		if(isEmpty(data)==false)
+			 		{
+			 			$("div#newpost").fadeIn("slow");
+			 		}
+			 		
+
 			 	},"json");
 
-			 	$("div#newpost").fadeIn("slow");
+			 	
 
 			 }, time);	
 
 			 
-
+			 // close butto
        		$("#close").on('click',function()
        		{
        			$("div#newpost").fadeOut("slow");
 
        		});	
        		
-       		//button
+       		//newpost button
        		$('button#b1').on("click",function(){
 
        			$("div#newpost").fadeOut("slow");
@@ -232,5 +238,19 @@
        		
 
     	});	
+
+
+  		function isEmpty(obj) {
+
+			    for(var prop in obj) {
+			        if(obj.hasOwnProperty(prop))
+			        {
+			            return false;
+			        }
+			    }
+
+		    	return true && JSON.stringify(obj) === JSON.stringify({});
+		}
+
   </script>
  @endsection

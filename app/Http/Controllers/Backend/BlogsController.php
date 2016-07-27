@@ -24,7 +24,7 @@ class BlogsController extends Controller
      */
 
     // to test
-     private $blog;
+    private $blog;
 
     public function __construct(BlogRepository $blog)
     {        
@@ -119,28 +119,36 @@ class BlogsController extends Controller
 
 
     ////////////////////////  ajax call for   /////////////////////////////////
+    public function update_newpost()
+    {
+
+
+    }
 
     public function listing_access(Request $request)
     {
 
         $this->blog->pushCriteria(new BlogCriteria());
-
         $items=$this->blog->getScroll($request);
         
-
         return response($items);
         exit();
-
-    }   
-
+    }
+    
     public function listing_newpost(Request $request)
     {   
         $this->blog->pushCriteria(new BlogCriteria());
         $items=$this->blog->getNewPost($request);
+        if($items==false)
+        {
+           $items["false"]=$items;
+        }
 
         return response($items);
         exit();
     }
+
+
 
 
 }
