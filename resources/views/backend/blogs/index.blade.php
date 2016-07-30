@@ -76,49 +76,49 @@
 
 
 
-		        <!-- form group -->
-		        	@foreach ($blogs as $blog)
-		        	<hr/>
-	                 <div class="form-group">
-	                  	<div class="item">
-		                  		 <div class="row">
-		    						<div class="col-sm-2 text-center">
-		    							<img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle" height="65" width="65" alt="Avatar">
-		   							</div>
-		   							
-		              				<div class="box-tool pull-right" style="position: absolute;margin-top: 4px;right: 80px;">
+		        	<div id="new_data">
+		        		@foreach ($blogs as $blog)
+			        	<hr/>
+		                 <div class="form-group">
+		                  	<div class="item">
+			                  		 <div class="row">
+			    						<div class="col-sm-2 text-center">
+			    							<img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle" height="65" width="65" alt="Avatar">
+			   							</div>
+			   							
+			              				<div class="box-tool pull-right" style="position: absolute;margin-top: 4px;right: 80px;">
 
-			 	 		 					<div class="btn-group">
-			 	 		 						<button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			 	 		 							<i class="fa fa-wrench"></i>
-			 	 		 						</button>
-			 	 		 						<ul class="dropdown-menu" style="left:-137px;" role="menu">
-			 	 		 							<li>
-			 	 		 								<a href="#">Edit</a>
-			 	 		 							</li>
-			 	 		 							<li>
-			 	 		 								<a href="#">Delete</a>
-			 	 		 							</li>
-			 	 		 						</ul>
-			 	 		 					</div>
+				 	 		 					<div class="btn-group">
+				 	 		 						<button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				 	 		 							<i class="fa fa-wrench"></i>
+				 	 		 						</button>
+				 	 		 						<ul class="dropdown-menu" style="left:-137px;" role="menu">
+				 	 		 							<li>
+				 	 		 								<a href="#">Edit</a>
+				 	 		 							</li>
+				 	 		 							<li>
+				 	 		 								<a href="#">Delete</a>
+				 	 		 							</li>
+				 	 		 						</ul>
+				 	 		 					</div>
 
-			 	 		 				</div>
-		           					
-		    						<div class="col-sm-10">
-		    							
-		      							<h4>{{ $blog->user->name }} <small>{{ $blog->created_at }}</small></h4>
-		      							<p>{{ $blog->description }}</p>
-		      							<br>
-		    						</div>
-		    					</div>
-							</div>
-	 	 		 			
-	 	 		 		
-	              <!-- /.item -->
-		 	 		 </div>
-		 	 	<!-- /.form-group -->
-		 	 	@endforeach
-
+				 	 		 				</div>
+			           					
+			    						<div class="col-sm-10">
+			    							
+			      							<h4>{{ $blog->user->name }} <small>{{ $blog->created_at }}</small></h4>
+			      							<p>{{ $blog->description }}</p>
+			      							<br>
+			    						</div>
+			    					</div>
+								</div>
+		 	 		 			
+		 	 		 		
+		              <!-- /.item -->
+			 	 		 </div>
+			 	 	<!-- /.form-group -->
+			 	 	@endforeach
+			 	 	</div>
 
 
 
@@ -165,14 +165,12 @@
 			
 			var time=10000;
 			var bottom;
+			var request;
+			var update_data;
 
-			
-
-
-
-			bottom=$(document).height()-$(window).height();
 			url="{{ url('backend/blog/ajax') }}";
 			new_url="{{ url('backend/blog/newpost') }}";
+			newpost_url="{{ url('backend/blog/updated') }}";
 
 			$(window).scroll(function(){
 				var scroll=$(this).scrollTop()+$(this).height()-$(document).height();
@@ -189,10 +187,18 @@
 					 		
 					 		$.each(data,function(key,value){
 					 			
-					 			template_blog="<hr><div class='form-group'> <div class='item'> <div class='row'> <div class='col-sm-2 text-center'> <img src='{{ asset('dist/img/user2-160x160.jpg')}}' class='img-circle' height='65' width='65' alt='Avatar'> </div> 		<div class='col-sm-10'> <h4>"+value.user.name+" <small>"+value.created_at+"</small> </h4> <p>"+value.description+"</p><br> </div> 	 </div> </div> </div>";
+					 			template_blog="<hr><div class='form-group scroll-old'> <div class='item'> <div class='row'> <div class='col-sm-2 text-center'> <img src='{{ asset('dist/img/user2-160x160.jpg')}}' class='img-circle' height='65' width='65' alt='Avatar'> </div> 		<div class='col-sm-10'> <h4>"+value.user.name+" <small>"+value.created_at+"</small> </h4> <p>"+value.description+"</p><br> </div> 	 </div> </div> </div>";
 					 			
-					 			$("div#scroll_data").append(template_blog).fadeIn("slow");
+					 			$("div#scroll_data").append(template_blog).show();
 					 			
+					 			
+					 		});
+
+					 		//for effects
+					 		$(".scroll-old").each(function(){
+					 			$(this).fadeOut(0).fadeIn('normal',function(){
+				 				   $(this).removeClass("scroll-old");
+				 				})
 					 		});
 					 		
 				 		// to know the end of the blog						 						 // end of post method
@@ -202,16 +208,18 @@
 				
 			});
 
-
+/////////////////////////////////////////////////////////////////////////////////////
 			// to prepend the data from the top of the blog every .. minutes or seconds
 
 			 setInterval(function(){
 
 			 	// post request 
-			 	$.post(new_url,{_token:$('input[name=_token]').val()},function(data){
-			 		
-			 		if(isEmpty(data)==false)
+			 	request=$.post(new_url,{_token:$('input[name=_token]').val()},function(data){
+			 					 		
+			 		if(data.length>0)
 			 		{
+			 			update_data=data;
+
 			 			$("div#newpost").fadeIn("slow");
 			 		}
 			 		
@@ -221,36 +229,58 @@
 			 	
 
 			 }, time);	
+///////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////
+			 //newpost button
+			$('button#b1').on("click",function()
+			{
+				request.abort();
+       			$.post(newpost_url,{_token:$('input[name=_token]').val()},function(data){
+			 		
+			 		if(data.length>0)
+			 		{			 			
+			 			$.each(data,function(key,value)
+			 			{
+			 				template_blog="<hr><div class='form-group new-item'> <div class='item'> <div class='row'> <div class='col-sm-2 text-center'> <img src='{{ asset('dist/img/user2-160x160.jpg')}}' class='img-circle' height='65' width='65' alt='Avatar'> </div> 		<div class='col-sm-10'> <h4>"+value.user.name+" <small>"+value.created_at+"</small> </h4> <p>"+value.description+"</p><br> </div> 	 </div> </div> </div>";
+					 			
+					 			$("div#new_data").prepend(template_blog).show();
+
+					 			//$(".new-item").slideUp(0).slideDown().removeClass("new-item");
+			 			});
+
+			 			$(".new-item").each(function(){
+					 			$(this).fadeOut(0).fadeIn('normal',function(){
+				 				   $(this).removeClass("new-item");
+				 				});
+					 	});
+
+			 			$("div#newpost").fadeOut("slow");
+
+			 		}			 		
+
+			 	},"json");
+
+
+       		}); 
+//////////////////////////////////////////////////////////////////////////////
 			 
-			 // close butto
+			 // close button
        		$("#close").on('click',function()
        		{
        			$("div#newpost").fadeOut("slow");
 
        		});	
        		
-       		//newpost button
-       		$('button#b1').on("click",function(){
 
-       			$("div#newpost").fadeOut("slow");
-       		});
+       		
+
        		
 
     	});	
 
 
-  		function isEmpty(obj) {
-
-			    for(var prop in obj) {
-			        if(obj.hasOwnProperty(prop))
-			        {
-			            return false;
-			        }
-			    }
-
-		    	return true && JSON.stringify(obj) === JSON.stringify({});
-		}
 
   </script>
+  
  @endsection

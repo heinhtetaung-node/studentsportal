@@ -42,7 +42,7 @@
                 </h4>
             </section>
 
-            <section class="content">
+            <section class="content panel-down">
                 @yield('content')
             </section>
 

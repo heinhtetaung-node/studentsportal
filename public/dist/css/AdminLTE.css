@@ -4973,3 +4973,8 @@ button for new blogs
 .btn-xs.round {
   border-radius: 10px;
 }
+/**/
+
+.panel-down{
+  padding-bottom: 50px;
+}

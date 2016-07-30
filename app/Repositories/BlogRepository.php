@@ -76,6 +76,18 @@ class BlogRepository extends BaseRepo
 		//return $this->model->all();		
 	}
 
+	public function updateNewPost(Request $request,$columns=array("*"))
+	{
+		$this->applyCriteria();
+		$collection=$this->all("user",(int)$request->session()->get('newpost_condition'),">");
+		if(!empty($collection))
+		{
+			$post_id=$request->session()->get('newpost_condition')+1;
+			$request->session()->put('newpost_condition',$post_id);
+			return $collection;
+		}
+	}
+
 	public function getNewPost(Request $request,$columns=array("*"))
 	{
 		$this->applyCriteria();

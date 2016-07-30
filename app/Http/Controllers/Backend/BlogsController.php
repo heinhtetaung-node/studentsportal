@@ -119,15 +119,21 @@ class BlogsController extends Controller
 
 
     ////////////////////////  ajax call for   /////////////////////////////////
-    public function update_newpost()
+    public function update_newpost(Request $request)
     {
 
-
+        // $post_id=$request->session()->get('newpost_condition')+1;
+        // $request->session()->put('newpost_condition',$post_id);
+        // return response(["success"=>true]);
+        // exit();
+        $this->blog->pushCriteria(new BlogCriteria());
+        $items=$this->blog->updateNewPost($request);
+        return response($items);
+        exit();
     }
 
     public function listing_access(Request $request)
     {
-
         $this->blog->pushCriteria(new BlogCriteria());
         $items=$this->blog->getScroll($request);
         

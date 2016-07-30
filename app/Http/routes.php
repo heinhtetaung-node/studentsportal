@@ -30,13 +30,13 @@ Route::group(['prefix'=>'backend','middleware'=>'auth'], function () {
 
 	Route::get('/', ['as' => 'backend', 'uses' => 'Backend\BackendController@index']);
 
-	Route::resource('blog','Backend\BlogsController');
 
+	Route::resource('blog','Backend\BlogsController');
 	Route::post('blog/ajax','Backend\BlogsController@listing_access');
 	Route::post('blog/newpost','Backend\BlogsController@listing_newpost');
+	Route::post('blog/updated','Backend\BlogsController@update_newpost');
 
 	Route::resource('student', 'Backend\StudentsController');
-	
 	Route::get('role','Backend\RoleController@index');
 	
 });
