@@ -31,6 +31,8 @@ class BlogRepository extends BaseRepo
 
 		$this->applyCriteria();
 		$collection = $this->all("user");
+		
+
 		$first_id=$collection[0]->id+1;
 
 		foreach ($collection as $key => $value) {

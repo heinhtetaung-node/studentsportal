@@ -87,8 +87,17 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 		// with or without Eloquent ORM
 		if(!empty($orm) && is_string($orm))
 		{	
-			//->offset($offset)
-			$model=$this->model->orderBy('id','DESC')->limit(5)->with($orm);
+			
+			if($orm==="user"):
+				// [$orm=>function($queries){
+				// 	$queries->where('users.delete_flag','=',0);
+				// }]
+				$model=$this->model->with($orm)->orderBy('id','DESC')->limit(5);
+
+			else:
+				$model=$this->model->with($orm)->orderBy('id','DESC')->limit(5);
+			endif;
+
 		}else
 		{
 			$model=$this->model->orderBy('id','DESC')->limit(5);
@@ -106,8 +115,8 @@ abstract class BaseSqlRepository implements RepositoryInterface, CriteriaInterfa
 			}
 
 		}
-
-
+				
+		
 		$this->applyCriteria();
 		return $model->get($columns);
 	}

@@ -2,6 +2,7 @@
 <?php 
     $user_name=$user->user()->name; 
     $user_role=$user->user()->role['id'];
+  
 ?>
 
 <!DOCTYPE html>

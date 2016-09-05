@@ -1818,7 +1818,8 @@ a:focus {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   border-top: 1px solid #f4f4f4;
-  padding: 10px;
+  padding: 10px 0;
+  position: relative; 
   background-color: #ffffff;
 }
 .chart-legend {
@@ -4948,30 +4949,28 @@ table.text-center th {
 }
 /*
 button for new blogs 
-
 */
-#b1 {
-  padding: 10px 20px;
+.btn-group .btn {
+  border-radius: 0 !important;
+}
+.btn-group .btn:first-child {
+    border-radius: 10px 0 0 10px !important;
+}
+.btn-group .btn:last-child {
+    border-radius: 0 10px 10px 0 !important;
+}
+.btn-group .btn:only-child {
+    border-radius: 10px !important;
+    margin-left: 0;
+}
+.btn.b1{
+  padding:0px;
   border: 0 none;
-  font-weight: 100;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 .btn:focus, .btn:active:focus, .btn.active:focus {
   outline: 0 none;
-}
-
-.btn.round {
-  border-radius: 24px;
-}
-.btn-lg.round {
-  border-radius: 32px;
-}
-.btn-sm.round {
-  border-radius: 14px;
-}
-.btn-xs.round {
-  border-radius: 10px;
 }
 /**/
 

@@ -8,12 +8,13 @@
 namespace App\Http\Controllers\Backend;
 use App\Models\Blog;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Repositories\BlogRepository;
 use App\Repositories\Criteria\BlogCriteria\BlogCriteria;
+use Intervention\Image\ImageManager as Image;
+use Storage;
 
 class BlogsController extends Controller
 {
@@ -25,7 +26,7 @@ class BlogsController extends Controller
 
     // to test
     private $blog;
-
+    
     public function __construct(BlogRepository $blog)
     {        
         $this->blog=$blog;
@@ -37,7 +38,7 @@ class BlogsController extends Controller
     {
         $this->blog->pushCriteria(new BlogCriteria());
         $blog_post=$this->blog->getAll($request); 
-       
+        
         return view('backend.blogs.index')->with('blogs',$blog_post);
 
     }
@@ -50,7 +51,7 @@ class BlogsController extends Controller
      */
     public function create(Blog $blog)
     {
-        $this->authorize('create',$blog);
+        //$this->authorize('create',$blog);
 
         return view('backend.blogs.register',['blog'=>$blog]);
         
@@ -64,12 +65,35 @@ class BlogsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-     //   var_dump($request);die;
-         $extension = $request['description'];
+          //$request->file('attachment')->getClientOriginalName()
+         
+        $extension = $request->all();
 
-         dd($extension);
-        //dd($request);
+        $structure = public_path().'/upload/blogs';
+        $data_structure= public_path()."/upload/blogs";
+
+        if(!file_exists($structure))
+        {
+            mkdir($structure,0777,true);
+            
+
+
+        }
+
+       //  Storage::makeDirectory($structure,0777);
+       //request->file('attachment')->move('upload/blogs',uniqid());
+
+        $image=new Image();
+        $image->make($request->file('attachment'))->fit(576, 754)->save('upload/blogs/'.uniqid()."_large");
+        $image->make($request->file('attachment'))->fit(220, 220)->save($structure.'/'.uniqid());
+        $image->make($request->file('attachment'))->fit(80, 80)->save($structure.'/'.uniqid().'_thumbnail');
+
+         
+
+
+         $file=array('image' => $request->file('attachment')->getClientOriginalName());
+         print_r($file);
+         exit();
     }
 
     /**
@@ -78,6 +102,7 @@ class BlogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         //

@@ -28,26 +28,37 @@
             
             
 
-	            <form role="form" action="{{ route('backend.blog.store') }}" method="post" enctype="multipart/form-data">
+	            <form role="form" action="{{ route('backend.blog.store') }}" id="form_submit" method="post" enctype="multipart/form-data">
 
 
-	           	
-	            	{{ csrf_field() }}
+	           	  {{ csrf_field() }}
 	              <div class="box-body">
 
 	              <!-- form group -->
 	               	<div class="form-group">
 
 	                 	<!-- summernote -->
-	                 	<div style="border:1px solid red; border-radius: 5px;">
-		                 	<textarea id="summernote" name="description" style="border-bottom: none; border:none; resize:none; border-radius: 5px 5px 0px 0px;" class="form-control" > </textarea>  
-		                 	<input type="file" id="summernote_file" style="padding: 10px;">
-	                 	</div>
+	                 	<div style="border: 1px solid red; border-radius: 5px; padding-left: 20px;">	
+		                 	<textarea id="summernote" name="description" placeholder="What's on your mind?" style="border-bottom: none; border:none; overflow:hidden; resize:none; border-radius: 5px 5px 0px 0px;" class="form-control"> </textarea>
+
+	                 		<div style="width: 100px; height: 100px; display: block; border: 2px dashed #888; margin: 0 0 7px 0;">
+
+	                 			<img id="previewing" name="image" src="" />
+						    </div>
+
+		                 	<div class="form-group">
+				                <div class="btn btn-default btn-file">
+				                  <i class="fa fa-paperclip"></i> Attachment
+				                  <input type="file" name="attachment" id="file">
+				                </div>
+				            </div>
+				            
+				        </div>
 
 	                 	
 	                 			
 	                 	<div class="box-footer">
-	                 		<button class="btn btn-primary" style="margin-left:96%;">Post</button>
+	                 		<button class="btn btn-primary pull-right">Post</button>
 	                 	</div>
 	             
 	                  <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> -->
@@ -61,13 +72,18 @@
 
 
 		            <!-- for new feed buttons -->
+	                
+
 	                  <div class="container" id="newpost" style="display:none">
 	                  <div class="row">
 		                  <div class="col-lg-4"></div>
 		                  <div class="col-lg-4 text-center">
-				                  <button type="button" class="btn btn-primary round" id="b1" data-dismiss="modal"> New Blogs &nbsp
-			    				  </button>
-			    				  <span aria-hidden="true" id="close">&times;</span>
+		                  		<div class="btn-group" role="group">
+				                  <button type="button" class="btn btn-round btn-primary" id="b1" class="b1" data-dismiss="modal"> New Blogs
+				                  </button>
+				                  <button type="button" class="btn btn-round btn-primary" class="b1" data-dimiss="modal" id="close">&times;
+			    				 </button>
+			    				 </div> 
 	    				  </div>
 		                  <div class="col-lg-4"></div>
 	                  </div>	
@@ -148,17 +164,21 @@
  @endsection
 
  @section('css')
- <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet"> -->
+
 
  @endsection
  
  @section('scripts')
-<!-- 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script> -->
+ // how to 
   <script type="text/javascript">
+  		
+  		//author@heinhtet
+  			
   		$(document).ready(function() {
 
-       		// $('#summernote').summernote({height: 250});
+  		    		Notification.requestPermission().then(function(result) {
+			  new Notification("Hi there!");
+			});
 
        		var i=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-body").children("div.form-group").eq(1).remove();
 			var j=$("div.form-group>div.note-editor").children('div').eq(5).children().children().children(".modal-footer").remove();
@@ -171,6 +191,7 @@
 			url="{{ url('backend/blog/ajax') }}";
 			new_url="{{ url('backend/blog/newpost') }}";
 			newpost_url="{{ url('backend/blog/updated') }}";
+			registerpost_url="{{ url('backend/blog') }}";
 
 			$(window).scroll(function(){
 				var scroll=$(this).scrollTop()+$(this).height()-$(document).height();
@@ -231,6 +252,7 @@
 			 }, time);	
 ///////////////////////////////////////////////////////////////////////////////////
 
+
 ///////////////////////////////////////////////////////////////////////////////////
 			 //newpost button
 			$('button#b1').on("click",function()
@@ -245,7 +267,7 @@
 			 				template_blog="<hr><div class='form-group new-item'> <div class='item'> <div class='row'> <div class='col-sm-2 text-center'> <img src='{{ asset('dist/img/user2-160x160.jpg')}}' class='img-circle' height='65' width='65' alt='Avatar'> </div> 		<div class='col-sm-10'> <h4>"+value.user.name+" <small>"+value.created_at+"</small> </h4> <p>"+value.description+"</p><br> </div> 	 </div> </div> </div>";
 					 			
 					 			$("div#new_data").prepend(template_blog).show();
-
+					 			
 					 			//$(".new-item").slideUp(0).slideDown().removeClass("new-item");
 			 			});
 
@@ -272,10 +294,64 @@
 
        		});	
        		
+////////////////////////////////////////////////// file upload //////////////////////////////////
+       		$("input#file").change(function(){
+   				var file=this.files[0];
+   				
+   				var imagefile = file.type;
+   				
+   				var match= ["image/jpeg","image/png","image/jpg"];
 
-       		
+       			if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+				{
 
-       		
+				}else {
+					var reader = new FileReader();
+					reader.onload = imageIsLoaded;
+					reader.readAsDataURL(this.files[0]);
+				}
+
+
+
+       		});
+
+ 		function imageIsLoaded(e) {
+ 			
+		$('#previewing').attr('src', e.target.result);
+		$('#previewing').attr('width', '95px');
+		$('#previewing').attr('height', '95px');
+		};
+//////////////////////////////////////////////end of file upload form_submit
+
+		$('#form_submit').on('submit',function(e){
+			e.preventDefault();
+						
+			$.ajax({
+				url:registerpost_url,
+				type:"POST",
+				data: new FormData(this),
+				contentType: false,     // The content type used when sending data to the server.
+				cache: false,           // To unable request pages to be cached
+				processData:false,	// To send DOMDocument or non processed data file it is set to false
+				beforeSend:function()
+				{
+					
+				},
+				success:function(data)
+				{
+					console.log(data);
+					$('#summernote').val("");
+					$('#previewing').attr('src','');
+					$('#previewing').removeAttr('width');
+					$('#previewing').removeAttr('height');
+				}
+			});
+
+			return false;
+		});
+
+
+
 
     	});	
 
